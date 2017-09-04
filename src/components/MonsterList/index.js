@@ -8,11 +8,12 @@ const MonsterList = ({
   monsters,
   flip,
   battleStarted,
-  selectedMonster
+  selectedMonster,
+  onSelectMonster
 }) => 
   <div className={'MonsterList'}>
     {monsters.map(monster => 
-      <div key={monster.name} className={'MonsterList__monster'}>
+      <div key={monster.name} className={'MonsterList__monster'} onClick={() => !battleStarted && onSelectMonster(monster.name)}>
         <MonsterListView 
           {...monster} 
           locked={battleStarted && (selectedMonster !== monster.name)} 

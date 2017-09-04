@@ -2,10 +2,11 @@
   font-family: 'Love Ya Like A Sister', cursive;
   margin: 0 auto;
   width: 90%;
-  height: 2em;
+  padding: 0.25em;
   display: flex;
   align-items: center;
   justify-content: space-around;
+  flex-wrap: wrap;
   background-color: #1f2023;
   border-radius: 0 0 5px 5px;
 }

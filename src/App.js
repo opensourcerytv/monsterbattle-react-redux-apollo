@@ -26,20 +26,38 @@ class App extends Component {
     battleStarted: false
   }
 
+  startBattle = () =>
+    this.setState({battleStarted: true})
+
+  attack = () => {
+
+  }
+
+  selectMonster1 = (monster1) =>
+    this.setState({monster1})
+
+  selectMonster2 = (monster2) =>
+    this.setState({monster2})
+
   render() {
     const {monster1, monster2, battleStarted} = this.state
     return (
       <div className="App">
         <MonsterList
           monsters={monsters}
-          battleStarted={battleStarted} />
+          battleStarted={battleStarted}
+          selectedMonster={monster1} 
+          onSelectMonster={this.selectMonster1} />
         <BattleMat
           monster1={findMonster(monster1)}
           monster2={findMonster(monster2)}
-          battleStarted={battleStarted} />
+          battleStarted={battleStarted} 
+          onActionClick={battleStarted ? this.attack : this.startBattle}/>
         <MonsterList
           monsters={monsters}
           battleStarted={battleStarted} 
+          selectedMonster={monster2}
+          onSelectMonster={this.selectMonster2}
           flip />
       </div>
     )
