@@ -1,13 +1,17 @@
 .MonsterStats {
   font-family: 'Love Ya Like A Sister', cursive;
-  margin: 1em auto;
-  padding: 1em;
+  margin: 0 auto;
+  width: 90%;
+  height: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
   background-color: #1f2023;
-  border-radius: 5px;
+  border-radius: 0 0 5px 5px;
 }
 
 .MonsterStats__label {
-  padding-right: 1em;
+  padding-right: 0.5em;
 }
 
 .MonsterStats__value {

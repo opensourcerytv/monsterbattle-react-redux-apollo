@@ -1,12 +1,72 @@
 .MonsterAvatar {
+  min-width: 120px;
   max-width: 100%;
-  margin: 0 auto;
+  width: 100%;
+  position: relative;
+}
+
+.MonsterAvatar--inList {
+  width: auto;
+  position: absolute;
+  z-index: 1;
+  left: 1em;
+  bottom: -1em;
+}
+
+.MonsterAvatar:before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  padding-bottom: 100%;
+  left: 50%;
+  bottom: 1em;
+  transform: translate(-50%, 50%) scale(0.6, 0.1);
+  border-radius: 50%;
+  background-color: rgba(0,0,0,0.5);
+  filter: blur(6em);
+}
+
+.MonsterAvatar--inList:before {
+  bottom: 35%;
+  background-color: white;
+  box-shadow: 0 0 0.5em white, 0 0 1em white;
+  transform: translate(-50%, 50%);
+  filter: blur(0.25em);
 }
 
 .MonsterAvatar img {
   width: 100%;
+  transform-origin: 50% 100%;
+  animation-name: breathe;
+  animation-duration: 1000ms;
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
 }
 
 .MonsterAvatar--flip {
   transform: rotateY(180deg);
+}
+
+.MonsterAvatar--flip img {
+  filter: hue-rotate(-45deg);
+}
+
+.MonsterAvatar--inList img {
+  animation-play-state: paused;
+}
+
+.MonsterAvatar--flip.MonsterAvatar--inList {
+  left: auto;
+  right: 1em;
+}
+
+@keyframes breathe {
+  0% {
+    transform: scaleY(0.99) skew(0.5deg);
+  }
+  100% {
+    transform: scaleY(1.01) skew(-0.5deg);
+  }
 }

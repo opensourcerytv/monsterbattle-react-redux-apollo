@@ -9,9 +9,13 @@ const {keys} = Object
 
 const MonsterAvatar = ({
   name,
-  flip
+  flip,
+  inList
 }) => 
-  <div className={cx('MonsterAvatar', {'MonsterAvatar--flip': flip})}>
+  <div className={cx('MonsterAvatar', {
+    'MonsterAvatar--flip': flip, 
+    'MonsterAvatar--inList': inList
+  })}>
     <img src={images[name]} />
   </div>
 

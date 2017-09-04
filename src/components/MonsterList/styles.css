@@ -1,0 +1,12 @@
+.MonsterList {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 100vh;
+  width: 20em;
+  padding: 1em;
+  flex-shrink: 0;
+}
+
+.MonsterList__monster {
+  margin-top: 3.5em;
+}

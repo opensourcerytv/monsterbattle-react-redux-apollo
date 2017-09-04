@@ -1,0 +1,25 @@
+.MonsterListView {
+  transition: all 120ms ease-out;
+  padding: 1em 1em 1em 40%;
+  background-color: #1f2023;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  cursor: pointer;
+  position: relative;
+}
+
+.MonsterListView:hover {
+  background-color: #1b9a77;
+}
+
+.MonsterListView--flip {
+  padding: 1em 40% 1em 1em;
+  flex-direction: row-reverse;
+}
+
+.MonsterListView--locked {
+  filter: grayscale(100%);
+  pointer-events: none;
+}

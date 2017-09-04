@@ -1,0 +1,52 @@
+.BattleMat {
+  position: relative;
+  font-family: 'Life Savers', cursive;
+  font-size: 22px;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.BattleMat__battleground {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.BattleMat__title {
+  position: absolute;
+  top: 0.3em;
+  font-size: 3em;
+}
+
+.BattleMat__footer {
+  position: absolute;
+  font-size: 2em;
+  bottom: 0.5em;
+}
+
+.BattleMat__action {
+  position: relative;
+  top: -3px;
+  appearance: none;
+  border-radius: 2em;
+  border: none;
+  background-color: #1b9a77;
+  color: white;
+  font-family: inherit;
+  font-size: inherit;
+  padding: 0.25em 1em;
+  box-shadow: 0 6px #178264, inset 0 0.5em 1em rgba(200,255,120,0.1), inset 0 0.5em 2em rgba(200,255,120,0.1);
+  cursor: pointer;
+  transition: all 60ms ease-out;
+  text-shadow: 0 3px rgba(0,0,0,0.3);
+}
+
+.BattleMat__action:hover {
+  top: 0;
+  box-shadow: 0 3px #178264;
+}
