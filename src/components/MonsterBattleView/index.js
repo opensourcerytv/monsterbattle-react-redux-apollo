@@ -12,7 +12,7 @@ const MonsterBattleView = ({
   name,
   attack,
   defense,
-  currentHealth,
+  damageTaken,
   health,
   dead,
   flip
@@ -23,7 +23,7 @@ const MonsterBattleView = ({
     <MonsterAvatar name={name} flip={flip} />
     <MonsterHealth 
       health={health} 
-      currentHealth={currentHealth || health} 
+      currentHealth={health - damageTaken} 
       flip={flip}>
       <MonsterName name={name} />
     </MonsterHealth>
