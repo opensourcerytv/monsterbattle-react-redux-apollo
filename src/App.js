@@ -1,21 +1,32 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import './App.css'
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
-}
+import Monster from './components/Monster'
 
-export default App;
+const monsters = [
+  {name: 'George'},
+  {name: 'Mort'},
+  {name: 'Steve'},
+  {name: 'Donk'},
+  {name: 'Flip'},
+  {name: 'Reginald'},
+  {name: 'Simon'},
+  {name: 'Snot'}
+]
+
+const App = () => 
+  <div className="App">
+    {monsters.map(({name}) => <Monster
+      key={name}
+      name={name}
+      attack={8}
+      defense={4}
+      currentHealth={50}
+      health={50}
+      flip={false}
+      inBattle={false} 
+      dead={false} />
+    )}
+  </div>
+
+export default App

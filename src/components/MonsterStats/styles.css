@@ -1,0 +1,28 @@
+.MonsterStats {
+  font-family: 'Love Ya Like A Sister', cursive;
+  margin: 1em auto;
+  padding: 1em;
+  background-color: #1f2023;
+  border-radius: 5px;
+}
+
+.MonsterStats__label {
+  padding-right: 1em;
+}
+
+.MonsterStats__value {
+  font-weight: bold;
+  text-align: right;
+}
+
+.MonsterStats__attack {
+  color: #ff6666;
+}
+
+.MonsterStats__defense {
+  color: #66a6ff;
+}
+
+.MonsterStats__health {
+  color: #b1e87d;
+}

@@ -1,0 +1,12 @@
+.MonsterAvatar {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.MonsterAvatar img {
+  width: 100%;
+}
+
+.MonsterAvatar--flip {
+  transform: rotateY(180deg);
+}
