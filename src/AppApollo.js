@@ -8,7 +8,13 @@ import BattleMat from './components/BattleMat'
 import './styles.css'
 
 const {max, floor, random} = Math
-
+const shuffle = (a) => {
+  for (let i = a.length; i; i--) {
+      let j = Math.floor(Math.random() * i);
+      [a[i - 1], a[j]] = [a[j], a[i - 1]];
+  }
+  return a;
+}
 
 class App extends Component {
   
@@ -29,7 +35,7 @@ class App extends Component {
     console.log('nextProps', nextProps);
     if (nextProps.monsters.loading || !nextProps.monsters.monsters) return;
     
-    this.monsters = nextProps.monsters.monsters
+    this.monsters = shuffle(nextProps.monsters.monsters.slice(0));
 
     if (!this.state.monster1) {
       this.setState({
@@ -102,10 +108,11 @@ class App extends Component {
       .then(res => {
         this.battle = res.data.doBattleTurn;
         console.log('this.battle', this.battle);
-        // Swap attacker and defender ready for next turn.
         this.setState({
+          // Swap attacker and defender ready for next turn.
           attackingMonsterName: this.state.defendingMonsterName,
           defendingMonsterName: this.state.attackingMonsterName,
+          // Update monster health.
           monster1Health: this.battle.monster1Health,
           monster2Health: this.battle.monster2Health,
         })
