@@ -1,7 +1,7 @@
 .MonsterAvatar {
-  min-width: 120px;
-  max-width: 100%;
-  width: 100%;
+  min-width: 100px;
+  max-width: 80%;
+  width: 80%;
   position: relative;
 }
 
