@@ -32,10 +32,16 @@ class App extends Component {
     this.monsters = nextProps.monsters.monsters
 
     if (!this.state.monster1) {
-      this.setState({monster1: this.monsters[0].name})
+      this.setState({
+        monster1: this.monsters[0].name,
+        monster1Health: this.monsters[0].health,
+      })
     }
     if (!this.state.monster2) {
-      this.setState({ monster2: this.monsters[1].name })
+      this.setState({ 
+        monster2: this.monsters[1].name,
+        monster2Health: this.monsters[1].health 
+      })
     }
   }
   
@@ -51,11 +57,15 @@ class App extends Component {
     return this.rollDice() + attacker.attack - defender.defense
   }
 
-  selectMonster1 = (monster1) =>
-    this.setState({monster1})
+  selectMonster1 = (monster1) => {
+    const monster = this.findMonster(monster1)
+    this.setState({ monster1: monster.name, monster2Health: monster.health })
+  }
 
-  selectMonster2 = (monster2) =>
-    this.setState({monster2})
+  selectMonster2 = (monster2) => {
+    const monster = this.findMonster(monster2)
+    this.setState({ monster2: monster.name, monster2Health: monster.health })
+  }
 
   startBattle = () => {
     this.props.startBattle({
