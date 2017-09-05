@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import { compose, gql, graphql } from 'react-apollo'
-import GraphQLProvider from './components/GraphQLProvider'
+import GraphQLProvider from './containers/GraphQLProvider'
 
 import MonsterList from './components/MonsterList'
 import BattleMat from './components/BattleMat'
