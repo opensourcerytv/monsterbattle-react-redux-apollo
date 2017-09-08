@@ -6,5 +6,6 @@ export default {
   Reginald: require('../../assets/images/reginald.svg'),
   Simon: require('../../assets/images/simon.svg'),
   Snot: require('../../assets/images/snot.svg'),
-  Steve: require('../../assets/images/steve.svg')
+  Steve: require('../../assets/images/steve.svg'),
+  tombstone: require('../../assets/images/tombstone.svg')
 }

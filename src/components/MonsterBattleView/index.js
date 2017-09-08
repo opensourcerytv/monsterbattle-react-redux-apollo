@@ -12,18 +12,16 @@ const MonsterBattleView = ({
   name,
   attack,
   defense,
-  damageTaken,
+  currentHealth,
   health,
-  dead,
-  flip
+  flip,
+  winner
 }) => 
-  <div className={cx('MonsterBattleView', {
-    'MonsterBattleView--dead': dead
-  })}>
-    <MonsterAvatar name={name} flip={flip} />
+  <div className={'MonsterBattleView'}>
+    <MonsterAvatar name={name} flip={flip} dead={currentHealth <= 0} />
     <MonsterHealth 
       health={health} 
-      currentHealth={health - damageTaken} 
+      currentHealth={currentHealth} 
       flip={flip}>
       <MonsterName name={name} />
     </MonsterHealth>
@@ -31,6 +29,7 @@ const MonsterBattleView = ({
       attack={attack}
       defense={defense}
       health={health} />
+    {winner && <div className={'MonsterBattleView__fireworks'} />}
   </div>
 
 export default MonsterBattleView

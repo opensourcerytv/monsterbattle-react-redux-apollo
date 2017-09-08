@@ -24,3 +24,8 @@
   opacity: 0.5;
   pointer-events: none;
 }
+
+.MonsterListView--selected {
+  background-color: #1b9a77;
+  filter: drop-shadow(0 0 0.25em #1b9a77) drop-shadow(0 0 0.5em #1b9a77);
+}

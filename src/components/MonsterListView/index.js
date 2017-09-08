@@ -9,10 +9,12 @@ import './styles.css'
 const MonsterListView = ({
   name,
   locked,
+  selected,
   flip
 }) =>
   <div className={cx('MonsterListView', {
     'MonsterListView--locked': locked, 
+    'MonsterListView--selected': selected, 
     'MonsterListView--flip': flip
   })}>
     <MonsterAvatar name={name} flip={flip} inList />

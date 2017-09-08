@@ -10,13 +10,19 @@ const {keys} = Object
 const MonsterAvatar = ({
   name,
   flip,
+  dead,
   inList
 }) => 
   <div className={cx('MonsterAvatar', {
-    'MonsterAvatar--flip': flip, 
-    'MonsterAvatar--inList': inList
+    'MonsterAvatar--inList': inList,
+    'MonsterAvatar--flip': flip
   })}>
-    <img src={images[name]} />
+    <img className={cx('MonsterAvatar__monster', {
+      'MonsterAvatar__monster--dead': dead
+    })} src={images[name]} />
+    {!inList && <img className={cx('MonsterAvatar__tombstone', {
+      'MonsterAvatar__tombstone--up': dead
+    })} src={images.tombstone} />}
   </div>
 
 MonsterAvatar.propTypes = {

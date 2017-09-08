@@ -20,13 +20,14 @@
 .BattleMat__title {
   position: absolute;
   top: 0.3em;
-  font-size: 3em;
+  font-size: 2.5em;
+  text-align: center;
+  color: #1f2023;
 }
 
 .BattleMat__footer {
-  position: absolute;
-  font-size: 2em;
-  bottom: 0.5em;
+  font-size: 1.5em;
+  padding-bottom: 0.5em;
 }
 
 .BattleMat__action {
@@ -35,18 +36,18 @@
   appearance: none;
   border-radius: 2em;
   border: none;
-  background-color: #1b9a77;
+  background-color: crimson;
   color: white;
   font-family: inherit;
   font-size: inherit;
   padding: 0.25em 1em;
-  box-shadow: 0 6px #178264, inset 0 0.5em 1em rgba(200,255,120,0.1), inset 0 0.5em 2em rgba(200,255,120,0.1);
+  box-shadow: 0 6px #af1d38, inset 0 0.5em 1em rgba(200,255,120,0.1), inset 0 0.5em 2em rgba(200,255,120,0.1);
   cursor: pointer;
   transition: all 60ms ease-out;
-  text-shadow: 0 3px rgba(0,0,0,0.3);
+  text-shadow: 0 0.05em rgba(0,0,0,0.3);
 }
 
 .BattleMat__action:hover {
   top: 0;
-  box-shadow: 0 3px #178264;
+  box-shadow: 0 3px #af1d38;
 }

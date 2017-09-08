@@ -1,4 +1,5 @@
 .MonsterStats {
+  flex-shrink: 0;
   font-family: 'Love Ya Like A Sister', cursive;
   margin: 0 auto;
   width: 90%;

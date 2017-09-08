@@ -1,12 +1,12 @@
 .MonsterAvatar {
-  min-width: 120px;
-  max-width: 100%;
+  min-width: 80px;
   width: 100%;
   position: relative;
+  perspective: 500px;
 }
 
 .MonsterAvatar--inList {
-  width: auto;
+  width: 95px;
   position: absolute;
   z-index: 1;
   left: 1em;
@@ -35,8 +35,9 @@
   filter: blur(0.25em);
 }
 
-.MonsterAvatar img {
+.MonsterAvatar__monster {
   width: 100%;
+  opacity: 1;
   transform-origin: 50% 100%;
   animation-name: breathe;
   animation-duration: 1000ms;
@@ -45,19 +46,50 @@
   animation-iteration-count: infinite;
 }
 
-.MonsterAvatar--flip {
-  transform: rotateY(180deg);
+.MonsterAvatar__monster--dead {
+  animation-name: die;
+  animation-direction: linear;
+  animation-timing-function: ease-in;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
 }
 
-.MonsterAvatar--flip img {
+.MonsterAvatar__tombstone {
+  transition-duration: 300ms;
+  transition-property: transform opacity;
+  transform-origin: 50% 100%;
+  transition-timing-function: cubic-bezier(.42,0,.78,1);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  transform: rotateX(-90deg);
+  opacity: 0;
+}
+
+.MonsterAvatar__tombstone--up {
+  transform: rotateX(0deg);
+  opacity: 1;
+}
+
+.MonsterAvatar--flip {
+  transform: rotateY(180deg);
   filter: hue-rotate(-45deg);
 }
 
-.MonsterAvatar--inList img {
-  animation-play-state: paused;
+.MonsterAvatar--flip .MonsterAvatar__tombstone {
+  transform: rotateX(-90deg) rotateY(180deg);
 }
 
-.MonsterAvatar--flip.MonsterAvatar--inList {
+.MonsterAvatar--flip .MonsterAvatar__tombstone--up {
+  transform: rotateX(0deg) rotateY(180deg);
+}
+
+.MonsterAvatar--inList .MonsterAvatar__monster {
+  animation: none;
+}
+
+.MonsterAvatar--inList.MonsterAvatar--flip {
   left: auto;
   right: 1em;
 }
@@ -70,3 +102,16 @@
     transform: scaleY(1.01) skew(-0.5deg);
   }
 }
+
+@keyframes die {
+  30% {
+    opacity: 1;
+    transform: rotateX(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: rotateX(90deg);
+    filter: grayscale(100%);
+  }
+}
+

@@ -2,11 +2,21 @@
   overflow-y: scroll;
   overflow-x: hidden;
   height: 100vh;
-  width: 20em;
-  padding: 1em;
+  width: 15em;
+  padding: 0 1em;
   flex-shrink: 0;
 }
 
+.MonsterList::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+.MonsterList::-webkit-scrollbar-thumb {
+    background: #FF0000;
+}
+
 .MonsterList__monster {
-  margin-top: 3.5em;
+  margin-top: 3.25em;
+  font-size: 16px;
 }

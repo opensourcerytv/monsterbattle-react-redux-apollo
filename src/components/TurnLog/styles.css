@@ -1,0 +1,77 @@
+.TurnLog {
+  position: absolute;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 15em;
+  padding: 0 1em;
+  background-color: white;
+  transition: all 240ms ease-out;
+  font-family: 'Life Savers', cursive;
+  color: #1f2023;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.TurnLog--flip {
+  left: auto;
+  right: 0;
+}
+
+.TurnLog--show {
+  opacity: 1;
+}
+
+.TurnLog__turn {
+  font-weight: bold;
+  line-height: 32px;
+  opacity: 0.75;
+  transition: all 240ms ease-out;
+  transform: scale(0.9);
+}
+
+.TurnLog__turn:last-child {
+  animation-name: slideLeft;
+  animation-duration: 240ms;
+  animation-direction: linear;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  transform: scale(1) translateX(0);
+  opacity: 1;
+}
+
+.TurnLog--flip .TurnLog__turn:last-child {
+  animation-name: slideRight;
+}
+
+.TurnLog__dmg {
+  color: #ff6666;
+}
+
+@keyframes slideLeft {
+  0% {
+    opacity: 0;
+    transform: scale(1.2) translateX(50%);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateX(0);
+  }
+}
+
+@keyframes slideRight {
+  0% {
+    opacity: 0;
+    transform: scale(1.2) translateX(-50%);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateX(0);
+  }
+}
