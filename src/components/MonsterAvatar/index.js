@@ -17,10 +17,10 @@ const MonsterAvatar = ({
     'MonsterAvatar--inList': inList,
     'MonsterAvatar--flip': flip
   })}>
-    <img className={cx('MonsterAvatar__monster', {
+    <img alt={name} className={cx('MonsterAvatar__monster', {
       'MonsterAvatar__monster--dead': dead
     })} src={images[name]} />
-    {!inList && <img className={cx('MonsterAvatar__tombstone', {
+    {!inList && <img alt={'tombstone'} className={cx('MonsterAvatar__tombstone', {
       'MonsterAvatar__tombstone--up': dead
     })} src={images.tombstone} />}
   </div>

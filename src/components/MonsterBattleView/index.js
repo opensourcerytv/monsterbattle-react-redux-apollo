@@ -1,5 +1,4 @@
 import React from 'react'
-import cx from 'classnames'
 
 import MonsterAvatar from '../MonsterAvatar'
 import MonsterHealth from '../MonsterHealth'

@@ -5,21 +5,17 @@ import VS from '../VS'
 
 import './styles.css'
 
-const {max} = Math
-
 const BattleMat = ({
   defender,
   monster1,
   monster2,
-  monster1DamageTaken,
-  monster2DamageTaken,
+  monster1Health,
+  monster2Health,
   battleStarted,
   onActionClick
 }) => {
-  const monster1CurrentHealth = max(monster1.health - monster1DamageTaken, 0)
-  const monster2CurrentHealth = max(monster2.health - monster2DamageTaken, 0)
-  const monster1Winner = !battleStarted && monster2CurrentHealth === 0
-  const monster2Winner = !battleStarted && monster1CurrentHealth === 0
+  const monster1Winner = !battleStarted && monster2Health === 0
+  const monster2Winner = !battleStarted && monster1Health === 0
 
   return (
     <div className={'BattleMat'}>
@@ -29,12 +25,12 @@ const BattleMat = ({
       <div className={'BattleMat__battleground'}>
         <MonsterBattleView 
           {...monster1} 
-          currentHealth={monster1CurrentHealth} 
+          currentHealth={monster1Health} 
           winner={monster1Winner}/>
         {!battleStarted && <VS />}
         <MonsterBattleView 
           {...monster2} 
-          currentHealth={monster2CurrentHealth} 
+          currentHealth={monster2Health} 
           winner={monster2Winner}
           flip />
       </div>
