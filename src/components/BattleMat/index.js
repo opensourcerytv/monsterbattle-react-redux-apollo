@@ -8,8 +8,8 @@ import './styles.css'
 const BattleMat = ({
   monster1,
   monster2,
-  monster1DamageTaken,
-  monster2DamageTaken,
+  monster1Health,
+  monster2Health,
   battleStarted,
   onActionClick
 }) => 
@@ -20,11 +20,11 @@ const BattleMat = ({
     <div className={'BattleMat__battleground'}>
       <MonsterBattleView 
         {...monster1} 
-        damageTaken={monster1DamageTaken} />
+        currentHealth={monster1Health} />
       {!battleStarted && <VS />}
       <MonsterBattleView 
         {...monster2} 
-        damageTaken={monster2DamageTaken} 
+        currentHealth={monster2Health} 
         flip />
     </div>
     <div className={'BattleMat__footer'}>

@@ -1,8 +1,16 @@
 import React from 'react'
 import {render} from 'react-dom'
 import './index.css'
-import App from './App'
 import registerServiceWorker from './registerServiceWorker'
 
-render(<App />, document.getElementById('root'))
+// Without GraphQL:
+import App from './App'
+const Component = <App />;
+
+// With GraphQL:
+// import App from './AppApollo'
+// import GraphQLProvider from './containers/GraphQLProvider'
+// const Component = <GraphQLProvider><App /></GraphQLProvider>;
+
+render(Component, document.getElementById('root'))
 registerServiceWorker()
