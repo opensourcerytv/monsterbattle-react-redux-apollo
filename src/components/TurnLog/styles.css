@@ -7,7 +7,7 @@
   width: 15em;
   padding: 0 1em;
   background-color: white;
-  transition: all 240ms ease-out;
+  transition: all 560ms 1500ms ease-out;
   font-family: 'Life Savers', cursive;
   color: #1f2023;
   display: flex;
@@ -25,6 +25,7 @@
 
 .TurnLog--show {
   opacity: 1;
+  transition: all 240ms ease-out;
 }
 
 .TurnLog__turn {

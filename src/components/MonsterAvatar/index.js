@@ -2,7 +2,7 @@ import React from 'react'
 import types from 'prop-types'
 import cx from 'classnames'
 
-import images from './images'
+import images from '../../assets/images'
 import './styles.css'
 
 const {keys} = Object

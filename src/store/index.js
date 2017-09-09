@@ -1,24 +1,10 @@
-const {max, floor, random} = Math
+import monsters from '../lib/monsters'
+import {calcDamage, shuffle} from '../lib/utils'
 
-const shuffle = (array) => {
-  let arr = [...array], m = array.length, t, i
-  while (m) {
-    i = floor(random() * m--)
-    t = arr[m]
-    arr[m] = arr[i]
-    arr[i] = t
-  }
-  return arr
-}
+const {max} = Math
 
 const find = (monsterName) => ({name}) => name === monsterName
 
-const roll = () => floor(random() * 7)
-
-const calcDamage = (attacker, defender) => 
-  roll() + attacker.attack - defender.defense
-
-// Redux stuff starts here
 const initialState = {
   turns: [],
   monster1: monsters[0],
@@ -26,16 +12,7 @@ const initialState = {
   monster1Health: monsters[0].health,
   monster2Health: monsters[1].health,
   battleStarted: false,
-  monsters: shuffle([
-    {name: 'George', attack: 6, defense: 4, health: 30},
-    {name: 'Donk', attack: 6, defense: 4, health: 30},
-    {name: 'Steve', attack: 6, defense: 4, health: 30},
-    {name: 'Mort', attack: 6, defense: 4, health: 30},
-    {name: 'Flip', attack: 6, defense: 4, health: 30},
-    {name: 'Reginald', attack: 6, defense: 4, health: 30},
-    {name: 'Simon', attack: 6, defense: 4, health: 30},
-    {name: 'Snot', attack: 6, defense: 4, health: 30}
-  ])
+  monsters: shuffle(monsters)
 }
 
 // constants
@@ -47,32 +24,90 @@ const START_BATTLE = 'START_BATTLE'
 const RESET = 'RESET'
 
 // action creators
-const selectMonster1 = (monster1) => ({
+export const selectMonster1 = (monster1) => ({
   type: SELECT_MONSTER_1,
   monster1
 })
 
-const selectMonster2 = (monster2) => ({
+export const selectMonster2 = (monster2) => ({
   type: SELECT_MONSTER_2,
   monster2
 })
 
-const monster1Attack = () => ({
+export const monster1Attack = () => ({
   type: MONSTER_1_ATTACK
 })
 
-const monster2Attack = () => ({
+export const monster2Attack = () => ({
   type: MONSTER_2_ATTACK
 })
 
-const startBattle = () => ({
+export const startBattle = () => ({
   type: START_BATTLE
 })
 
-const reset = () => ({
-  type: RESET
+// reducers
+const handleReset = (state) => ({
+  ...state, 
+  turns: [],
+  monster1Health: state.monster1.health,
+  monster2Health: state.monster2.health
 })
 
-// reducers
+const handleSelectMonster1 = (state, {monster1}) => ({
+  ...state, 
+  monster1: state.monsters.find(find(monster1))
+})
+
+const handleSelectMonster2 = (state, {monster2}) => ({
+  ...state, 
+  monster2: state.monsters.find(find(monster2))
+})
+
+const handleMonster1Attack = (state) => {
+  const {turns, monster1, monster2, monster2Health} = state
+  const damage = calcDamage(monster1, monster2)
+  const newHealth = max(monster2Health - damage, 0)
+
+  return {
+    ...state, 
+    turns: [...turns, {damage, attacker: monster1.name, defender: monster2.name}],
+    monster2Health: newHealth,
+    battleStarted: newHealth > 0
+  }
+}
+
+const handleMonster2Attack = (state) => {
+  const {turns, monster1, monster2, monster1Health} = state
+  const damage = calcDamage(monster2, monster1)
+  const newHealth = max(monster1Health - damage, 0)
+  
+  return {
+    ...state, 
+    turns: [...turns, {damage, attacker: monster2.name, defender: monster1.name}],
+    monster1Health: newHealth,
+    battleStarted: newHealth > 0
+  }
+}
+
+const handleStartBattle = (state) => ({
+  ...state, 
+  battleStarted: true
+})
 
 // reducer
+const chain = (...reducers) => (state, payload) => 
+  reducers.reduce((acc, reducer) => reducer(acc, payload), state)
+
+const handlers = {
+  [SELECT_MONSTER_1]: chain(handleSelectMonster1, handleReset),
+  [SELECT_MONSTER_2]: chain(handleSelectMonster2, handleReset),
+  [MONSTER_1_ATTACK]: handleMonster1Attack,
+  [MONSTER_2_ATTACK]: handleMonster2Attack,
+  [START_BATTLE]: chain(handleReset, handleStartBattle)
+}
+
+export default (state = initialState, {type, ...payload}) => 
+  handlers.hasOwnProperty(type) 
+    ? handlers[type](state, payload) 
+    : state

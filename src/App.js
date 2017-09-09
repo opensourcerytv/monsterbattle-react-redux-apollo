@@ -1,15 +1,12 @@
 import React from 'react'
 
-import LocalState from './containers/LocalState'
-// import Redux from './containers/Redux'
-// import Apollo from './containers/Apollo'
+// import withLocalStateLogic from './containers/withLocalStateLogic'
+import withReduxLogic from './containers/withReduxLogic'
+// import withApolloLogic from './containers/withApolloLogic'
 import GameBoard from './components/GameBoard'
 
-const GameLogic = LocalState
-// const GameLogic = Redux
-// const GameLogic = Apollo
-
-const App = () =>
-  <GameLogic Board={GameBoard} />
+// const App = withLocalStateLogic(GameBoard)
+const App = withReduxLogic(GameBoard)
+// const App = withApolloLogic(GameBoard)
 
 export default App
