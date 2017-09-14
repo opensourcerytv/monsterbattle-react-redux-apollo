@@ -1,0 +1,10 @@
+.MonsterName {
+  font-family: 'Chelsea Market', cursive;
+  font-weight: 900;
+  text-align: center;
+  line-height: 1;
+  font-size: 1.5em;
+  color: white;
+  text-shadow: 0 2px 3px #1f2023;
+  padding: 0 1em;
+}

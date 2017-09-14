@@ -1,4 +1,4 @@
-const {min, max, floor, random} = Math
+const {max, floor, random} = Math
 const compose = (...fns) => (arg) => 
   fns.reduce((acc, fn) => fn(acc), arg)
 

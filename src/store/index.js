@@ -21,7 +21,6 @@ const SELECT_MONSTER_2 = 'SELECT_MONSTER_2'
 const MONSTER_1_ATTACK = 'MONSTER_1_ATTACK'
 const MONSTER_2_ATTACK = 'MONSTER_2_ATTACK'
 const START_BATTLE = 'START_BATTLE'
-const RESET = 'RESET'
 
 // action creators
 export const selectMonster1 = (monster1) => ({

@@ -8,6 +8,7 @@
   justify-content: flex-start;
   cursor: pointer;
   position: relative;
+  z-index: 0;
 }
 
 .MonsterListView:hover {
@@ -28,4 +29,5 @@
 .MonsterListView--selected {
   background-color: #1b9a77;
   filter: drop-shadow(0 0 0.25em #1b9a77) drop-shadow(0 0 0.5em #1b9a77);
+  z-index: 1;
 }
