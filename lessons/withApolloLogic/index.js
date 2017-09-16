@@ -4,7 +4,105 @@ import {compose, gql, graphql} from 'react-apollo'
 import {shuffle} from '../../lib/utils'
 
 const graphQLConnected = compose(
-  // graphql(gql``),
+  graphql(gql`
+    query {
+      monsters {
+        id
+        name
+        health
+        attack
+        defense
+      }
+    }
+  `, {
+    name: 'monsters',
+  }),
+  graphql(gql`
+    mutation startBattle(
+      $monster1Name: String!
+      $monster2Name: String!
+    ) {
+      startBattle(
+        monster1Name: $monster1Name,
+        monster2Name: $monster2Name,
+      ) {
+        id
+        monster1 {
+          name
+        }
+        monster2 {
+          name
+        }
+        monster1Health
+        monster2Health
+        started
+        finished
+        winner {
+          name
+        }
+        loser {
+          name
+        }
+        turns {
+          id
+          battleId
+          damage
+          attackingMonster {
+            name
+          }
+          defendingMonster {
+            name
+          }
+        }
+      }
+    }
+  `, {
+    name: 'startBattle',
+  }),
+  graphql(gql`
+    mutation doBattleTurn(
+      $battleId: String!
+      $attackingMonsterName: String!
+      $defendingMonsterName: String!
+    ) {
+      doBattleTurn(
+        battleId: $battleId,
+        attackingMonsterName: $attackingMonsterName,
+        defendingMonsterName: $defendingMonsterName
+      ) {
+        id
+        monster1 {
+          name
+        }
+        monster2 {
+          name
+        }
+        monster1Health
+        monster2Health
+        started
+        finished
+        winner {
+          name
+        }
+        loser {
+          name
+        }
+        turns {
+          id
+          battleId
+          damage
+          attackingMonster {
+            name
+          }
+          defendingMonster {
+            name
+          }
+        }
+      }
+    }
+  `, {
+    name: 'doBattleTurn',
+  }),
 )
 
 const withApolloLogic = (Board) => {
@@ -129,7 +227,7 @@ const withApolloLogic = (Board) => {
         battleStarted
       } = this.state
 
-      if (this.monsters.length === 0) return <div style={{ fontSize: '4em', textAlign: 'center', marginTop: '20%' }}>Loading...</div>;
+      if (this.monsters.length === 0) return null;
 
       return (  
         <Board
