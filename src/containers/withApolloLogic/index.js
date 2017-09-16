@@ -47,6 +47,12 @@ const graphQLConnected = compose(
           id
           battleId
           damage
+          attackingMonster {
+            name
+          }
+          defendingMonster {
+            name
+          }
         }
       }
     }
@@ -85,6 +91,12 @@ const graphQLConnected = compose(
           id
           battleId
           damage
+          attackingMonster {
+            name
+          }
+          defendingMonster {
+            name
+          }
         }
       }
     }
@@ -97,7 +109,7 @@ const withApolloLogic = (Board) => {
   class Apollo extends Component {
     
     monsters = []
-    battle = null
+    battle = {}
 
     state = {
       monster1: null,
@@ -147,13 +159,11 @@ const withApolloLogic = (Board) => {
       })
         .then(res => {
           this.battle = res.data.startBattle
-          console.log('this.battle', this.battle)
           this.setState({ 
             battleStarted: true,
             attackingMonsterName: this.state.monster1.name,
             defendingMonsterName: this.state.monster2.name,
-          })
-
+          }, this.reset)
         })
         .catch(err => {
           console.log('err', err)
@@ -176,6 +186,15 @@ const withApolloLogic = (Board) => {
       })
         .then(({data}) => {
           this.battle = data.doBattleTurn
+          this.battle.turns = this.battle.turns.map(({
+            attackingMonster, 
+            defendingMonster, 
+            damage
+          }) => ({
+            attacker: attackingMonster.name, 
+            defender: defendingMonster.name, 
+            damage
+          }))
           console.log('this.battle', this.battle)
           this.setState({
             // Swap attacker and defender ready for next turn.
@@ -184,6 +203,7 @@ const withApolloLogic = (Board) => {
             // Update monster health.
             monster1Health: this.battle.monster1Health,
             monster2Health: this.battle.monster2Health,
+            battleStarted: this.battle.monster2Health > 0 && this.battle.monster1Health > 0
           })
         })
         .catch(err => {
@@ -197,6 +217,7 @@ const withApolloLogic = (Board) => {
         : this.startBattle
 
     render() {
+      const {turns = []} = this.battle
       const {
         defendingMonsterName,
         monster1, 
@@ -216,8 +237,8 @@ const withApolloLogic = (Board) => {
           monster2={monster2} 
           monster1Health={monster1Health} 
           monster2Health={monster2Health} 
-          monster1Log={[]}
-          monster2Log={[]}
+          monster1Log={turns.filter((_, i) => Boolean(i % 2))}
+          monster2Log={turns.filter((_, i) => !Boolean(i % 2))}
           battleStarted={battleStarted}
 
           selectMonster1={this.selectMonster1}

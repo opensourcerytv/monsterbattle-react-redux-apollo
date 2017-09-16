@@ -10,6 +10,7 @@ const MonsterList = ({
   battleStarted,
   lockedMonster,
   selectedMonster,
+  
   onSelectMonster
 }) => 
   <div className={'MonsterList'}>

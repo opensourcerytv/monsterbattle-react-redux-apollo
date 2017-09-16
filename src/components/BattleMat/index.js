@@ -12,6 +12,7 @@ const BattleMat = ({
   monster1Health,
   monster2Health,
   battleStarted,
+  
   onActionClick
 }) => {
   const monster1Winner = !battleStarted && monster2Health === 0
