@@ -1,10 +1,7 @@
 import React, {Component} from 'react'
 import {compose, gql, graphql} from 'react-apollo'
-import GraphQLProvider from '../GraphQLProvider'
 
-import {shuffle} from '../lib/utils'
-
-const {max} = Math
+import {shuffle} from '../../lib/utils'
 
 const graphQLConnected = compose(
   graphql(gql`
@@ -118,16 +115,10 @@ const withApolloLogic = (Board) => {
       this.monsters = shuffle(monsters.monsters.slice(0))
 
       if (!this.state.monster1) {
-        this.setState({
-          monster1: this.monsters[0].name,
-          monster1Health: this.monsters[0].health,
-        })
+        this.selectMonster1(this.monsters[0].name);
       }
       if (!this.state.monster2) {
-        this.setState({ 
-          monster2: this.monsters[1].name,
-          monster2Health: this.monsters[1].health 
-        })
+        this.selectMonster2(this.monsters[1].name)
       }
     }
 
@@ -141,17 +132,17 @@ const withApolloLogic = (Board) => {
       return this.monsters.find(({name}) => name === monsterName)
     }
 
-    selectMonster1 = (monster1) => 
-      this.setState({monster1: this.findMonster(monster1)}, this.reset)
+    selectMonster1 = (monsterName) => 
+      this.setState({monster1: this.findMonster(monsterName)}, this.reset)
 
-    selectMonster2 = (monster2) => 
-      this.setState({monster2: this.findMonster(monster2)}, this.reset)
+    selectMonster2 = (monsterName) => 
+      this.setState({monster2: this.findMonster(monsterName)}, this.reset)
 
     startBattle = () => {
       this.props.startBattle({
         variables: {
-          monster1Name: this.state.monster1,
-          monster2Name: this.state.monster2,
+          monster1Name: this.state.monster1.name,
+          monster2Name: this.state.monster2.name,
         },
       })
         .then(res => {
@@ -183,7 +174,7 @@ const withApolloLogic = (Board) => {
           defendingMonsterName,
         },
       })
-        .then({data} => {
+        .then(({data}) => {
           this.battle = data.doBattleTurn
           console.log('this.battle', this.battle)
           this.setState({
@@ -215,10 +206,12 @@ const withApolloLogic = (Board) => {
         battleStarted
       } = this.state
 
-      return (
+      if (this.monsters.length === 0) return null;
+
+      return (  
         <Board
           defender={defendingMonsterName}
-          monsters={monsters}
+          monsters={this.monsters}
           monster1={monster1} 
           monster2={monster2} 
           monster1Health={monster1Health} 
@@ -237,3 +230,5 @@ const withApolloLogic = (Board) => {
 
   return graphQLConnected(Apollo)
 }
+
+export default withApolloLogic
