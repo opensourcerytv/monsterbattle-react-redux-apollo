@@ -21,3 +21,7 @@ npm start
 The MonsterBattle app will open automatically at [http://localhost:3000](http://localhost:3000).
 
 The app will reload automatically when you make changes, and will display errors in the browser and console. 
+
+## Lesson slides
+
+The React presentation slides for this lesson can be [found here](https://docs.google.com/presentation/d/1gW5baL5fgQdVyLyG-5ed3Qha98crq5_Wpg-8bV1-DKU/edit?usp=sharing).
